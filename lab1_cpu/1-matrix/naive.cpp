@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <chrono>
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -9,10 +8,10 @@ int main(int argc, char* argv[]) {
         cerr << "Usage: " << argv[0] << " <matrix_size> <input_file>\n";
         return 1;
     }
-
+    
     const int n = stoi(argv[1]);
     ifstream fin(argv[2]);
-
+    
     vector<double> a(n);
     vector<vector<double>> b(n, vector<double>(n));
     vector<double> sum(n, 0.0);
@@ -22,18 +21,12 @@ int main(int argc, char* argv[]) {
         for (int i = 0; i < n; ++i)
             fin >> b[j][i];
 
-    auto start = chrono::high_resolution_clock::now();
-
-    // 优化算法核心
-    fill(sum.begin(), sum.end(), 0.0);
+    // 平凡算法核心
+    for (int i = 0; i < n; ++i) {
+        sum[i] = 0.0;
+        for (int j = 0; j < n; ++j)
+            sum[i] += b[j][i] * a[j];  // 列访问
+    }
     
-    for (int j = 0; j < n; ++j)
-        for (int i = 0; i < n; ++i)
-            sum[i] += b[j][i] * a[j];  // 行访问
-
-    auto end = chrono::high_resolution_clock::now();
-    chrono::duration<double> diff = end - start;
-    cout << "Optimized time: " << diff.count() << " sec\n";
-
     return 0;
 }

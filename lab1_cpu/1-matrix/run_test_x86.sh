@@ -3,7 +3,7 @@ sizes=(500 1000 2000 4000 8000 16000)
 for n in "${sizes[@]}"; do
     echo "====== Testing n=$n ======"
     
-    ./gen-data $n input_$n.txt
+    ./gen_data $n input_$n.txt
     
     # 预热缓存
 #./naive $n input_$n.txt > /dev/null

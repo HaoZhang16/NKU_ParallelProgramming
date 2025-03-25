@@ -1,7 +1,8 @@
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
-#include <cstdlib>  // for atoi
+#include <cstdlib>
 
 using namespace std;
 
@@ -13,7 +14,8 @@ int main(int argc, char* argv[]) {
             test_ns.push_back(atoi(argv[i]));
         }
     } else {
-        test_ns = {8, 16, 32, 64};
+        cerr << "wrong input";
+        return 1;
     }
 
     for (int n : test_ns) {
