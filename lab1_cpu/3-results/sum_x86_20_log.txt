@@ -1,0 +1,1155 @@
+====== Testing n=8192 ======
+-- Naive --
+Run #1
+53
+Run #2
+54
+Run #3
+53
+Run #4
+37
+Run #5
+39
+Run #6
+44
+Run #7
+49
+Run #8
+53
+Run #9
+44
+Run #10
+35
+Run #11
+32
+Run #12
+33
+Run #13
+40
+Run #14
+35
+Run #15
+41
+Run #16
+44
+Run #17
+48
+Run #18
+37
+Run #19
+51
+Run #20
+28
+-- Optimized01 --
+Run #1
+14
+Run #2
+14
+Run #3
+14
+Run #4
+14
+Run #5
+14
+Run #6
+14
+Run #7
+14
+Run #8
+24
+Run #9
+15
+Run #10
+15
+Run #11
+14
+Run #12
+14
+Run #13
+14
+Run #14
+14
+Run #15
+14
+Run #16
+14
+Run #17
+14
+Run #18
+14
+Run #19
+14
+Run #20
+14
+-- Optimized02 --
+Run #1
+17
+Run #2
+17
+Run #3
+17
+Run #4
+18
+Run #5
+18
+Run #6
+17
+Run #7
+17
+Run #8
+17
+Run #9
+17
+Run #10
+17
+Run #11
+17
+Run #12
+17
+Run #13
+17
+Run #14
+17
+Run #15
+17
+Run #16
+17
+Run #17
+17
+Run #18
+17
+Run #19
+17
+Run #20
+17
+-- Optimized03 --
+Run #1
+23
+Run #2
+23
+Run #3
+23
+Run #4
+23
+Run #5
+23
+Run #6
+23
+Run #7
+23
+Run #8
+23
+Run #9
+23
+Run #10
+23
+Run #11
+23
+Run #12
+23
+Run #13
+23
+Run #14
+23
+Run #15
+23
+Run #16
+23
+Run #17
+23
+Run #18
+23
+Run #19
+23
+Run #20
+23
+====== Testing n=16384 ======
+-- Naive --
+Run #1
+57
+Run #2
+57
+Run #3
+57
+Run #4
+57
+Run #5
+57
+Run #6
+57
+Run #7
+57
+Run #8
+57
+Run #9
+248
+Run #10
+57
+Run #11
+57
+Run #12
+57
+Run #13
+57
+Run #14
+57
+Run #15
+57
+Run #16
+57
+Run #17
+57
+Run #18
+57
+Run #19
+57
+Run #20
+57
+-- Optimized01 --
+Run #1
+28
+Run #2
+28
+Run #3
+28
+Run #4
+28
+Run #5
+28
+Run #6
+28
+Run #7
+48
+Run #8
+28
+Run #9
+28
+Run #10
+28
+Run #11
+28
+Run #12
+28
+Run #13
+28
+Run #14
+28
+Run #15
+28
+Run #16
+28
+Run #17
+28
+Run #18
+28
+Run #19
+28
+Run #20
+28
+-- Optimized02 --
+Run #1
+34
+Run #2
+34
+Run #3
+34
+Run #4
+34
+Run #5
+34
+Run #6
+34
+Run #7
+34
+Run #8
+34
+Run #9
+34
+Run #10
+34
+Run #11
+34
+Run #12
+56
+Run #13
+34
+Run #14
+34
+Run #15
+34
+Run #16
+34
+Run #17
+34
+Run #18
+34
+Run #19
+34
+Run #20
+34
+-- Optimized03 --
+Run #1
+45
+Run #2
+46
+Run #3
+46
+Run #4
+46
+Run #5
+46
+Run #6
+45
+Run #7
+46
+Run #8
+46
+Run #9
+46
+Run #10
+45
+Run #11
+80
+Run #12
+45
+Run #13
+45
+Run #14
+46
+Run #15
+45
+Run #16
+46
+Run #17
+46
+Run #18
+46
+Run #19
+52
+Run #20
+45
+====== Testing n=32768 ======
+-- Naive --
+Run #1
+113
+Run #2
+114
+Run #3
+114
+Run #4
+113
+Run #5
+113
+Run #6
+113
+Run #7
+113
+Run #8
+114
+Run #9
+113
+Run #10
+114
+Run #11
+113
+Run #12
+113
+Run #13
+113
+Run #14
+114
+Run #15
+113
+Run #16
+113
+Run #17
+113
+Run #18
+113
+Run #19
+114
+Run #20
+113
+-- Optimized01 --
+Run #1
+76
+Run #2
+57
+Run #3
+57
+Run #4
+63
+Run #5
+57
+Run #6
+109
+Run #7
+57
+Run #8
+57
+Run #9
+57
+Run #10
+57
+Run #11
+57
+Run #12
+57
+Run #13
+57
+Run #14
+57
+Run #15
+57
+Run #16
+57
+Run #17
+57
+Run #18
+57
+Run #19
+57
+Run #20
+57
+-- Optimized02 --
+Run #1
+69
+Run #2
+69
+Run #3
+69
+Run #4
+71
+Run #5
+68
+Run #6
+69
+Run #7
+68
+Run #8
+69
+Run #9
+68
+Run #10
+68
+Run #11
+69
+Run #12
+69
+Run #13
+69
+Run #14
+69
+Run #15
+69
+Run #16
+68
+Run #17
+69
+Run #18
+69
+Run #19
+69
+Run #20
+69
+-- Optimized03 --
+Run #1
+93
+Run #2
+93
+Run #3
+93
+Run #4
+91
+Run #5
+93
+Run #6
+92
+Run #7
+92
+Run #8
+94
+Run #9
+91
+Run #10
+93
+Run #11
+92
+Run #12
+91
+Run #13
+91
+Run #14
+93
+Run #15
+91
+Run #16
+93
+Run #17
+92
+Run #18
+94
+Run #19
+91
+Run #20
+94
+====== Testing n=65536 ======
+-- Naive --
+Run #1
+265
+Run #2
+227
+Run #3
+238
+Run #4
+228
+Run #5
+233
+Run #6
+228
+Run #7
+306
+Run #8
+227
+Run #9
+227
+Run #10
+297
+Run #11
+228
+Run #12
+289
+Run #13
+227
+Run #14
+227
+Run #15
+228
+Run #16
+228
+Run #17
+258
+Run #18
+227
+Run #19
+872
+Run #20
+228
+-- Optimized01 --
+Run #1
+114
+Run #2
+114
+Run #3
+114
+Run #4
+161
+Run #5
+161
+Run #6
+119
+Run #7
+125
+Run #8
+114
+Run #9
+117
+Run #10
+120
+Run #11
+109
+Run #12
+109
+Run #13
+135
+Run #14
+109
+Run #15
+114
+Run #16
+114
+Run #17
+294
+Run #18
+114
+Run #19
+117
+Run #20
+109
+-- Optimized02 --
+Run #1
+145
+Run #2
+138
+Run #3
+139
+Run #4
+131
+Run #5
+140
+Run #6
+138
+Run #7
+135
+Run #8
+139
+Run #9
+140
+Run #10
+141
+Run #11
+138
+Run #12
+144
+Run #13
+139
+Run #14
+141
+Run #15
+137
+Run #16
+142
+Run #17
+282
+Run #18
+139
+Run #19
+138
+Run #20
+137
+-- Optimized03 --
+Run #1
+190
+Run #2
+187
+Run #3
+188
+Run #4
+185
+Run #5
+188
+Run #6
+185
+Run #7
+182
+Run #8
+195
+Run #9
+186
+Run #10
+186
+Run #11
+183
+Run #12
+183
+Run #13
+188
+Run #14
+184
+Run #15
+192
+Run #16
+188
+Run #17
+201
+Run #18
+199
+Run #19
+192
+Run #20
+187
+====== Testing n=131072 ======
+-- Naive --
+Run #1
+455
+Run #2
+455
+Run #3
+481
+Run #4
+492
+Run #5
+460
+Run #6
+455
+Run #7
+456
+Run #8
+455
+Run #9
+455
+Run #10
+456
+Run #11
+455
+Run #12
+458
+Run #13
+458
+Run #14
+455
+Run #15
+464
+Run #16
+456
+Run #17
+462
+Run #18
+455
+Run #19
+456
+Run #20
+481
+-- Optimized01 --
+Run #1
+238
+Run #2
+218
+Run #3
+229
+Run #4
+253
+Run #5
+245
+Run #6
+254
+Run #7
+233
+Run #8
+231
+Run #9
+228
+Run #10
+229
+Run #11
+228
+Run #12
+229
+Run #13
+232
+Run #14
+229
+Run #15
+229
+Run #16
+228
+Run #17
+229
+Run #18
+228
+Run #19
+229
+Run #20
+229
+-- Optimized02 --
+Run #1
+299
+Run #2
+278
+Run #3
+282
+Run #4
+277
+Run #5
+296
+Run #6
+434
+Run #7
+277
+Run #8
+278
+Run #9
+276
+Run #10
+275
+Run #11
+299
+Run #12
+279
+Run #13
+283
+Run #14
+284
+Run #15
+284
+Run #16
+287
+Run #17
+280
+Run #18
+278
+Run #19
+317
+Run #20
+276
+-- Optimized03 --
+Run #1
+542
+Run #2
+443
+Run #3
+456
+Run #4
+418
+Run #5
+401
+Run #6
+427
+Run #7
+361
+Run #8
+403
+Run #9
+405
+Run #10
+393
+Run #11
+371
+Run #12
+412
+Run #13
+599
+Run #14
+381
+Run #15
+380
+Run #16
+408
+Run #17
+379
+Run #18
+392
+Run #19
+374
+Run #20
+373
+====== Testing n=262144 ======
+-- Naive --
+Run #1
+957
+Run #2
+905
+Run #3
+964
+Run #4
+949
+Run #5
+917
+Run #6
+1256
+Run #7
+878
+Run #8
+949
+Run #9
+911
+Run #10
+911
+Run #11
+1020
+Run #12
+912
+Run #13
+939
+Run #14
+920
+Run #15
+915
+Run #16
+917
+Run #17
+937
+Run #18
+937
+Run #19
+1015
+Run #20
+901
+-- Optimized01 --
+Run #1
+493
+Run #2
+528
+Run #3
+442
+Run #4
+458
+Run #5
+473
+Run #6
+471
+Run #7
+521
+Run #8
+486
+Run #9
+488
+Run #10
+466
+Run #11
+466
+Run #12
+453
+Run #13
+482
+Run #14
+465
+Run #15
+464
+Run #16
+464
+Run #17
+542
+Run #18
+499
+Run #19
+472
+Run #20
+464
+-- Optimized02 --
+Run #1
+559
+Run #2
+553
+Run #3
+541
+Run #4
+560
+Run #5
+560
+Run #6
+550
+Run #7
+982
+Run #8
+559
+Run #9
+562
+Run #10
+535
+Run #11
+542
+Run #12
+560
+Run #13
+566
+Run #14
+543
+Run #15
+752
+Run #16
+560
+Run #17
+609
+Run #18
+604
+Run #19
+564
+Run #20
+557
+-- Optimized03 --
+Run #1
+779
+Run #2
+794
+Run #3
+867
+Run #4
+797
+Run #5
+771
+Run #6
+831
+Run #7
+867
+Run #8
+732
+Run #9
+886
+Run #10
+1020
+Run #11
+818
+Run #12
+818
+Run #13
+833
+Run #14
+781
+Run #15
+747
+Run #16
+786
+Run #17
+853
+Run #18
+814
+Run #19
+776
+Run #20
+928
+====== Testing n=524288 ======
+-- Naive --
+Run #1
+1771
+Run #2
+1918
+Run #3
+1998
+Run #4
+2129
+Run #5
+2492
+Run #6
+1869
+Run #7
+1881
+Run #8
+1908
+Run #9
+1785
+Run #10
+1809
+Run #11
+1861
+Run #12
+1901
+Run #13
+1904
+Run #14
+1750
+Run #15
+1744
+Run #16
+1854
+Run #17
+1792
+Run #18
+1952
+Run #19
+2023
+Run #20
+2555
+-- Optimized01 --
+Run #1
+880
+Run #2
+885
+Run #3
+897
+Run #4
+881
+Run #5
+885
+Run #6
+880
+Run #7
+924
+Run #8
+1037
+Run #9
+888
+Run #10
+947
+Run #11
+886
+Run #12
+974
+Run #13
+931
+Run #14
+1046
+Run #15
+1079
+Run #16
+946
+Run #17
+923
+Run #18
+1010
+Run #19
+1050
+Run #20
+1034
+-- Optimized02 --
+Run #1
+1107
+Run #2
+1207
+Run #3
+1216
+Run #4
+1169
+Run #5
+1135
+Run #6
+1170
+Run #7
+1167
+Run #8
+1178
+Run #9
+1139
+Run #10
+1202
+Run #11
+1157
+Run #12
+1295
+Run #13
+1089
+Run #14
+1088
+Run #15
+1089
+Run #16
+1237
+Run #17
+1116
+Run #18
+1132
+Run #19
+1094
+Run #20
+1339
+-- Optimized03 --
+Run #1
+1455
+Run #2
+1572
+Run #3
+1538
+Run #4
+1690
+Run #5
+1619
+Run #6
+1628
+Run #7
+1781
+Run #8
+1654
+Run #9
+1561
+Run #10
+1707
+Run #11
+1678
+Run #12
+1720
+Run #13
+1757
+Run #14
+1490
+Run #15
+1527
+Run #16
+1651
+Run #17
+1782
+Run #18
+1569
+Run #19
+1831
+Run #20
+1512

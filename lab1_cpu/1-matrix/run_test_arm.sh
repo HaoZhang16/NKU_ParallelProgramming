@@ -1,5 +1,5 @@
 #!/bin/bash
-sizes=(80 160 320 640 1280 2560 5120)
+sizes=(20 640)
 repeats=20  # 设定重复次数
 
 for n in "${sizes[@]}"; do
@@ -8,16 +8,17 @@ for n in "${sizes[@]}"; do
     # 生成数据
     ./gen_data $n input_$n.txt
 
+    # 正式测试（添加 qemu 前缀）
     echo "-- Naive --"
     for i in $(seq 1 $repeats); do
         echo "Run #$i"
-        ./naive_x86 $n input_$n.txt
+        /usr/bin/qemu-aarch64 -L /usr/aarch64-linux-gnu/ naive_arm $n input_$n.txt
     done
 
     echo "-- Optimized --"
     for i in $(seq 1 $repeats); do
         echo "Run #$i"
-        ./optimized_x86 $n input_$n.txt
+        /usr/bin/qemu-aarch64 -L /usr/aarch64-linux-gnu/ optimized_arm $n input_$n.txt
     done
 
     rm input_$n.txt

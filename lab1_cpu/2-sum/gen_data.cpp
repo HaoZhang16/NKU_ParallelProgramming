@@ -1,34 +1,22 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <string>
-#include <cstdlib>
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    vector<int> test_ns;
-    
-    if (argc > 1) {
-        for (int i = 1; i < argc; ++i) {
-            test_ns.push_back(atoi(argv[i]));
-        }
-    } else {
-        cerr << "wrong input";
+    if (argc != 3) {
+        cerr << "wrong input\n";
         return 1;
     }
+    
+    const int n = stoi(argv[1]);
+    ofstream fout(argv[2]);
 
-    for (int n : test_ns) {
-        string filename = "data_n" + to_string(n) + ".txt";
-        ofstream outfile(filename);
-        
-        outfile << n << endl;
-        for (int i = 1; i <= n; ++i) {
-            outfile << i << endl;
-        }
-        
-        outfile.close();
-    }
-
+    // 生成向量a
+    for (int j = 0; j < n; ++j)
+        fout << (n-j)*(j%3) << (j == n-1 ? '\n' : ' ');
+    
     return 0;
 }
+
+

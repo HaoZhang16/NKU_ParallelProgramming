@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <cstring>
-
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
 
-long long recursion(int* a, int n) {
+long long recursion(vector<double>& a, int n) {
     if (n == 1) return a[0];
     for (int i = 0; i < n/2; ++i) {
         a[i] += a[n - i - 1];
@@ -14,34 +14,28 @@ long long recursion(int* a, int n) {
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        cerr << "Usage: " << argv[0] << " <input_file>" << endl;
+    if (argc != 3) {
+        cerr << "wrong input\n";
         return 1;
     }
+    
+    const int n = stoi(argv[1]);
+    ifstream fin(argv[2]);
+    
+    vector<double> a(n);
+    for (int j = 0; j < n; ++j) fin >> a[j];
 
-    ifstream infile(argv[1]);
-    if (!infile.is_open()) {
-        cerr << "Error opening file: " << argv[1] << endl;
-        return 1;
-    }
+    auto start = high_resolution_clock::now(); // 开始计时
 
-    int n;
-    infile >> n;
+	volatile long long sum = recursion(a, n);
 
-    vector<int> a(n);
-    for (int i = 0; i < n; ++i) {
-        infile >> a[i];
-    }
+//    cout << "Optimized02 (recursion) sum: " << sum << endl;
 
-    infile.close();
+    auto end = high_resolution_clock::now(); // 结束计时
+    auto duration = duration_cast<microseconds>(end - start).count();
 
-    int* tmp = new int[n];
-    memcpy(tmp, a.data(), n * sizeof(int));
-
-    long long sum = recursion(tmp, n);
-    delete[] tmp;
-
-    cout << "Optimized02 (recursive) sum: " << sum << endl;
-
+    cout << duration << endl; // 输出执行时间（微秒）
+    
     return 0;
 }
+
