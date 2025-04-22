@@ -97,7 +97,6 @@ std::priority_queue<std::pair<float, uint32_t>> plain_simd_search(float* base, f
     for (int i = 0; i < base_number; ++i) {
         // 使用SIMD加速点积计算
         float dis = InnerProductSIMDNeon(base + i * vecdim, query, vecdim);
-		// dis = 1 - dis;
 
         // 维护最大堆
         if (q.size() < k) {

@@ -12,7 +12,7 @@
 #include "hnswlib/hnswlib/hnswlib.h"
 #include "flat_scan.h"
 #include "plain_simd_scan.h"
-// #include "sq_simd_scan.h"
+#include "sq_simd_scan.h"
 // 可以自行添加需要的头文件
 
 using namespace hnswlib;
@@ -73,6 +73,8 @@ int main(int argc, char *argv[])
     auto test_query = LoadData<float>(data_path + "DEEP100K.query.fbin", test_number, vecdim);
     auto test_gt = LoadData<int>(data_path + "DEEP100K.gt.query.100k.top100.bin", test_number, test_gt_d);
     auto base = LoadData<float>(data_path + "DEEP100K.base.100k.fbin", base_number, vecdim);
+
+    auto sq_base = LoadQuantizedData<uint8_t>(data_path + "DEEP100K.base.100k.ubin", base_number, vecdim);
     // 只测试前2000条查询
     test_number = 2000;
 
@@ -102,10 +104,10 @@ int main(int argc, char *argv[])
 		// auto res = flat_search(base, test_query + i*vecdim, base_number, vecdim, k);
 		
 		// 朴素simd
-		auto res = plain_simd_search(base, test_query + i*vecdim, base_number, vecdim, k);
+		// auto res = plain_simd_search(base, test_query + i*vecdim, base_number, vecdim, k);
         
 		// sq_simd
-		// auto res = sq_simd_search(base, test_query + i*vecdim, base_number, vecdim, k);
+		auto res = sq_simd_search(sq_base, test_query + i*vecdim, base_number, vecdim, k);
 		struct timeval newVal;
         ret = gettimeofday(&newVal, NULL);
         int64_t diff = (newVal.tv_sec * Converter + newVal.tv_usec) - (val.tv_sec * Converter + val.tv_usec);
@@ -140,3 +142,4 @@ int main(int argc, char *argv[])
     std::cout << "average latency (us): "<<avg_latency / test_number<<"\n";
     return 0;
 }
+
