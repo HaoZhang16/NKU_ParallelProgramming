@@ -1,27 +1,6 @@
 #include <queue>
 #include <arm_neon.h>
 
-template<typename T>
-T* LoadQuantizedData(const std::string& data_path, size_t& n, size_t& d) {
-    std::ifstream fin(data_path, std::ios::in | std::ios::binary);
-    if (!fin.is_open()) {
-        std::cerr << "Failed to open quantized file " << data_path << "\n";
-        return nullptr;
-    }
-
-    fin.read((char*)&n, 4);
-    fin.read((char*)&d, 4);
-
-    T* data = new T[n * d];
-    fin.read((char*)data, sizeof(T) * n * d);
-    fin.close();
-
-    std::cerr << "load quantized data " << data_path << "\n";
-    std::cerr << "dimension: " << d << "  number: " << n << "  size_per_element: " << sizeof(T) << "\n";
-
-    return data;
-}
-
 void Quantize(const float* input, uint8_t* output, size_t dim, float min_val, float max_val) {
     float scale = 255.0f / (max_val - min_val);
 
@@ -103,5 +82,6 @@ std::priority_queue<std::pair<float, uint32_t>> sq_simd_search(uint8_t* base, fl
             }
         }
     }
+    delete[] quantized_query;
     return q;
 }

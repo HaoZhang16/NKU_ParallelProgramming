@@ -11,8 +11,9 @@
 #include <omp.h>
 #include "hnswlib/hnswlib/hnswlib.h"
 #include "flat_scan.h"
-#include "plain_simd_scan.h"
+// #include "plain_simd_scan.h"
 #include "sq_simd_scan.h"
+#include "pq_simd_scan.h"
 // 可以自行添加需要的头文件
 
 using namespace hnswlib;
@@ -69,12 +70,18 @@ int main(int argc, char *argv[])
     size_t test_gt_d = 0, vecdim = 0;
 
     // std::string data_path = "/anndata/"; 
-    std::string data_path = "./data/";  // 本地测试
+    std::string data_path = "./files/";  // 本地测试
     auto test_query = LoadData<float>(data_path + "DEEP100K.query.fbin", test_number, vecdim);
     auto test_gt = LoadData<int>(data_path + "DEEP100K.gt.query.100k.top100.bin", test_number, test_gt_d);
     auto base = LoadData<float>(data_path + "DEEP100K.base.100k.fbin", base_number, vecdim);
 
-    auto sq_base = LoadQuantizedData<uint8_t>(data_path + "DEEP100K.base.100k.ubin", base_number, vecdim);
+    auto sq_base = LoadData<uint8_t>(data_path + "DEEP100K.base.100k.ubin", base_number, vecdim);
+
+    size_t center_vecdim = 0, center_num_total = 0;
+    size_t center_num = 0, cluster_num = 0;
+    auto pq_base = LoadData<uint8_t>(data_path + "DEEP100K.base.100k_4_256.quantized.bin", base_number, cluster_num);
+    auto pq_center = LoadData<float>(data_path + "DEEP100K.base.100k_4_256.center.bin", center_num_total, center_vecdim);
+    center_num = center_num_total / cluster_num;
     // 只测试前2000条查询
     test_number = 2000;
 
@@ -107,7 +114,11 @@ int main(int argc, char *argv[])
 		// auto res = plain_simd_search(base, test_query + i*vecdim, base_number, vecdim, k);
         
 		// sq_simd
-		auto res = sq_simd_search(sq_base, test_query + i*vecdim, base_number, vecdim, k);
+		// auto res = sq_simd_search(sq_base, test_query + i*vecdim, base_number, vecdim, k);
+
+        // pq_simd
+        auto res = pq_simd_search(pq_base, pq_center, test_query + i*vecdim, base_number, vecdim, k, center_num, center_vecdim, cluster_num);
+
 		struct timeval newVal;
         ret = gettimeofday(&newVal, NULL);
         int64_t diff = (newVal.tv_sec * Converter + newVal.tv_usec) - (val.tv_sec * Converter + val.tv_usec);
