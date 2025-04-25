@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     auto test_query = LoadData<float>(data_path + "DEEP100K.query.fbin", test_number, vecdim);
     auto test_gt = LoadData<int>(data_path + "DEEP100K.gt.query.100k.top100.bin", test_number, test_gt_d);
     auto base = LoadData<float>(data_path + "DEEP100K.base.100k.fbin", base_number, vecdim);
-
+	
     auto sq_base = LoadData<uint8_t>(data_path + "DEEP100K.base.100k.ubin", base_number, vecdim);
 
     size_t center_vecdim = 0, center_num_total = 0;
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
     auto pq_base = LoadData<uint8_t>(data_path + "DEEP100K.base.100k_4_256.quantized.bin", base_number, cluster_num);
     auto pq_center = LoadData<float>(data_path + "DEEP100K.base.100k_4_256.center.bin", center_num_total, center_vecdim);
     center_num = center_num_total / cluster_num;
-    // 只测试前2000条查询
+	// 只测试前2000条查询
     test_number = 2000;
 
     const size_t k = 10;
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
     // 下面是一个构建hnsw索引的示例
     // build_index(base, base_number, vecdim);
 
-    
+    //	std::cout<<"vecdim:"<<vecdim<<std::endl;    
     // 查询测试代码
     for(int i = 0; i < test_number; ++i) {
         const unsigned long Converter = 1000 * 1000;
@@ -117,8 +117,8 @@ int main(int argc, char *argv[])
 		// auto res = sq_simd_search(sq_base, test_query + i*vecdim, base_number, vecdim, k);
 
         // pq_simd
-        auto res = pq_simd_search(pq_base, pq_center, test_query + i*vecdim, base_number, vecdim, k, center_num, center_vecdim, cluster_num);
-
+        auto res = pq_simd_search(pq_base, pq_center, test_query + i*vecdim, base_number, vecdim, k, center_num, center_vecdim, cluster_num, base);
+        
 		struct timeval newVal;
         ret = gettimeofday(&newVal, NULL);
         int64_t diff = (newVal.tv_sec * Converter + newVal.tv_usec) - (val.tv_sec * Converter + val.tv_usec);

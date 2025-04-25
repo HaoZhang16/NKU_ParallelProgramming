@@ -47,9 +47,13 @@ float InnerProductSIMDNeon(float* b1, float* b2, size_t vecdim) {
         sum = sum + m;  // 累加到总和
     }
 
-    float tmp[8];
-    sum.storeu(tmp);  // 存储结果
-    float dis = tmp[0] + tmp[1] + tmp[2] + tmp[3] + tmp[4] + tmp[5] + tmp[6] + tmp[7];
+    // float tmp[8];
+    // sum.storeu(tmp);  // 存储结果
+    // float dis = tmp[0] + tmp[1] + tmp[2] + tmp[3] + tmp[4] + tmp[5] + tmp[6] + tmp[7];
+    float32x4_t part0 = sum.data.val[0];
+    float32x4_t part1 = sum.data.val[1];
+    float dis = vaddvq_f32(part0) + vaddvq_f32(part1);  // 各自内部 4 加
+
     return dis;
 }
 
@@ -73,4 +77,5 @@ std::priority_queue<std::pair<float, uint32_t>> plain_simd_search(float* base, f
     }
     return q;
 }
+
 
