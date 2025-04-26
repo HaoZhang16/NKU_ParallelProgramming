@@ -11,6 +11,11 @@ struct simd8float32 {
 		data.val[1] = vdupq_n_f32(0.0f);
 	}
 
+    explicit simd8float32(const float x){
+        data.val[0] = vdupq_n_f32(x);
+        data.val[1] = vdupq_n_f32(x);
+    }
+
     explicit simd8float32(const float* x) 
         : data{vld1q_f32(x), vld1q_f32(x + 4)} {}
 
@@ -27,6 +32,14 @@ struct simd8float32 {
         simd8float32 result;
         result.data.val[0] = vaddq_f32(data.val[0], other.data.val[0]);
         result.data.val[1] = vaddq_f32(data.val[1], other.data.val[1]);
+        return result;
+    }
+
+    // 向量减法
+    simd8float32 operator-(const simd8float32& other) const {
+        simd8float32 result;
+        result.data.val[0] = vsubq_f32(data.val[0], other.data.val[0]);
+        result.data.val[1] = vsubq_f32(data.val[1], other.data.val[1]);
         return result;
     }
 

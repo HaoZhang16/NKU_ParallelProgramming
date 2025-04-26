@@ -1,6 +1,6 @@
 #include <queue>
 #include <arm_neon.h>
-#include "plain_simd_scan.h"
+#include "sq_simd_scan.h"
 
 // 利用InnerProductSIMDNeon进行24个float32运算
 // b1是所有中心向量，b2是查询向量，center_num表示每段的聚类中心数量

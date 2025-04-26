@@ -12,7 +12,7 @@
 #include "hnswlib/hnswlib/hnswlib.h"
 #include "flat_scan.h"
 // #include "plain_simd_scan.h"
-#include "sq_simd_scan.h"
+// #include "sq_simd_scan.h"
 #include "pq_simd_scan.h"
 // 可以自行添加需要的头文件
 
