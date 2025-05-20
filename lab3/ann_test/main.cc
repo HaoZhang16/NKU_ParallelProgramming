@@ -15,7 +15,9 @@
 // #include "sq_simd_scan.h"
 // #include "pq_simd_scan.h"
 // #include "fs_simd_scan.h"
-# include "ivf_pthread.h"
+// #include "ivf_pthread.h"
+// #include "ivf_openmp.h"
+#include "ivfpq_pthread.h"
 // 可以自行添加需要的头文件
 
 using namespace hnswlib;
@@ -94,7 +96,13 @@ int main(int argc, char *argv[])
     auto ivf_center = LoadData<float>(q_data_path + "DEEP100K.base.100k.256.center.bin", ivf_n_clusters, vecdim);//256*96
     auto ivf_data = LoadData<float>(q_data_path + "DEEP100K.base.100k.256.data.bin", base_number, vecdim);//100000*96
     auto ivf_index = LoadData<uint32_t>(q_data_path + "DEEP100K.base.100k.256.index.bin", base_number, idx_size);//100000*1
-    auto ivf_offset = LoadData<uint32_t>(q_data_path + "DEEP100K.base.100k.256.offset.bin", offset_num, idx_size);//257*1
+    auto ivf_offset = LoadData<uint32_t>(q_data_path + "DEEP100K.base.100k.256.offset.bin", offset_num, idx_size);//256*1
+
+    size_t ivfpq_cluster_num = 0, ivfpq_center_num_total = 0;
+    size_t ivfpq_center_num = 0, ivfpq_center_vecdim = 0;
+    auto ivfpq_base = LoadData<uint8_t>(q_data_path + "DEEP100K.base.100k.256.pq_4_256.data.bin", base_number, ivfpq_cluster_num);//100000*4
+    auto ivfpq_center = LoadData<float>(q_data_path + "DEEP100K.base.100k.256.pq_4_256.center.bin", ivfpq_center_num_total, ivfpq_center_vecdim);//1024*24
+    ivfpq_center_num = ivfpq_center_num_total / ivfpq_cluster_num;
 
     // 只测试前2000条查询
     test_number = 2000;
@@ -136,8 +144,15 @@ int main(int argc, char *argv[])
         // fs_simd
         // auto res = fs_simd_search(fs_base, fs_center, test_query + i*vecdim, base_number, vecdim, k, fs_center_num, center_vecdim, base, pq_base, pq_center, center_num);
         
-        // ivf
-        auto res = ivf_pthread_search(test_query + i*vecdim, ivf_center, ivf_data, ivf_index, ivf_offset, vecdim, k, ivf_n_clusters, 24, 6);
+        // ivf-pthread
+        // auto res = ivf_pthread_search(test_query + i*vecdim, ivf_center, ivf_data, ivf_index, ivf_offset, vecdim, k, ivf_n_clusters, 24, 6);
+        
+        // ivf-omp
+        //auto res = ivf_openmp_search(test_query + i*vecdim, ivf_center, ivf_data, ivf_index, ivf_offset, vecdim, k, ivf_n_clusters, 24, 6);
+
+        // ivfpq-pthread
+        auto res = ivfpq_pthread_search(test_query + i*vecdim, ivfpq_base, ivfpq_center, base, ivf_center, ivf_index, ivf_offset, vecdim, k, 
+            ivfpq_center_num, ivfpq_center_vecdim, ivfpq_cluster_num, ivf_n_clusters, 24, 6);
 
         struct timeval newVal;
         ret = gettimeofday(&newVal, NULL);
