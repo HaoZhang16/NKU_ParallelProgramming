@@ -33,7 +33,7 @@ std::priority_queue<std::pair<float, uint32_t>> ivf_openmp_search(
 
     // 并行处理 selected_clusters 中的每个簇
     #pragma omp parallel for num_threads(num_threads) schedule(dynamic)
-    for (int i = 0; i < static_cast<int>(m); ++i) {
+    for (int i = 0; i < m; ++i) {
         uint32_t cid = selected_clusters[i];
         uint32_t begin = cluster_start[cid];
         uint32_t end = cluster_start[cid + 1];

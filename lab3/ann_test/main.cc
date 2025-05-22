@@ -17,7 +17,8 @@
 // #include "fs_simd_scan.h"
 // #include "ivf_pthread.h"
 // #include "ivf_openmp.h"
-#include "ivfpq_pthread.h"
+// #include "ivfpq_pthread.h"
+#include "ivfpq_openmp.h"
 // 可以自行添加需要的头文件
 
 using namespace hnswlib;
@@ -151,8 +152,10 @@ int main(int argc, char *argv[])
         //auto res = ivf_openmp_search(test_query + i*vecdim, ivf_center, ivf_data, ivf_index, ivf_offset, vecdim, k, ivf_n_clusters, 24, 6);
 
         // ivfpq-pthread
-        auto res = ivfpq_pthread_search(test_query + i*vecdim, ivfpq_base, ivfpq_center, base, ivf_center, ivf_index, ivf_offset, vecdim, k, 
-            ivfpq_center_num, ivfpq_center_vecdim, ivfpq_cluster_num, ivf_n_clusters, 24, 6);
+        // auto res = ivfpq_pthread_search(test_query + i*vecdim, ivfpq_base, ivfpq_center, base, ivf_center, ivf_index, ivf_offset, vecdim, k, ivfpq_center_num, ivfpq_center_vecdim, ivfpq_cluster_num, ivf_n_clusters, 24, 6);
+
+        // ivfpq-omp
+        auto res = ivfpq_openmp_search(test_query + i*vecdim, ivfpq_base, ivfpq_center, base, ivf_center, ivf_index, ivf_offset, vecdim, k, ivfpq_center_num, ivfpq_center_vecdim, ivfpq_cluster_num, ivf_n_clusters, 24, 6);
 
         struct timeval newVal;
         ret = gettimeofday(&newVal, NULL);
